@@ -9,13 +9,13 @@
         $TmpLahir = array("Solo", "Jakarta", "Surabaya");
         $TglLahir = array("01-04-1988", "30-03-1985", "12-12-1990");
 
-        function newDate($tgl) {
+        function newDate($tgl) { //fungsi untuk konversi bulan menjadi teks
             $newDate = date("j F Y", strtotime($tgl));
             return $newDate;
         }
-        function usia($tgl){
+        function usia($tgl){ // fungsi untuk mendapatkan umur
             $pars = explode("-", $tgl);
-            $umur = 2021 - intval($pars[2]);
+            $umur = date("Y") - intval($pars[2]);
             return $umur;
         }
     ?>
@@ -26,24 +26,19 @@
             <td>Tempat, Tanggal Lahir</td>
             <td>Usia</td>
         </tr>
+
+        <?php 
+            for($i=0; $i < count($NIK); $i++){ // perulangan untuk menampilkan data dalam bentuk tabel
+        ?>
         <tr>
-            <td><?= $NIK[0] ?></td>
-            <td><?= $Nama[0] ?></td>
-            <td><?= $TmpLahir[0].", ".newDate($TglLahir[0]) ?></td>
-            <td><?= usia($TglLahir[0]) ?></td>
+            <td><?= $NIK[$i] ?></td>
+            <td><?= $Nama[$i] ?></td>
+            <td><?= $TmpLahir[$i].", ".newDate($TglLahir[$i]) ?></td>
+            <td><?= usia($TglLahir[$i]) ?></td>
         </tr>
-        <tr>
-            <td><?= $NIK[1] ?></td>
-            <td><?= $Nama[1] ?></td>
-            <td><?= $TmpLahir[1].", ".newDate($TglLahir[1]) ?></td>
-            <td><?= usia($TglLahir[1]) ?></td>
-        </tr>
-        <tr>
-            <td><?= $NIK[2] ?></td>
-            <td><?= $Nama[2] ?></td>
-            <td><?= $TmpLahir[2].", ".newDate($TglLahir[2]) ?></td>
-            <td><?= usia($TglLahir[2]) ?></td>
-        </tr>
+        <?php 
+            } 
+        ?>
     </table>
 </body>
 </html>
